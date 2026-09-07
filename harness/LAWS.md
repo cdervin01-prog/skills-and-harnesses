@@ -19,6 +19,24 @@ Harness = laws. Skill = map for this job. When they clash, harness wins.
 9. **Wrong lane is a rule only when earned.** Earned `pruned` is harness state: log it, inject it next turn, block re-entry. Soft `suspect` is not a lock.
 10. **Reopen is cheap.** New evidence, reset audit, or the operator opens the lane. A page never prunes. A page may only propose a test or accuse a prune.
 
+## Working set (keep the live data tiny)
+
+The chat is not the memory. When the window fills, the model restarts and walks a buried lane. Only a condensed working set is injected each turn.
+
+11a. **Inject only this, in this shape:**
+
+```
+err: <exact error ≤160>
+tree: name:state name:state …
+dead: name:evidence≤80 …
+log: <last 5 ledger rows>
+next: <one action>
+```
+
+11b. **Do not inject** the research packet, full command dumps, old essays, or the skill body twice. Packet stays on disk. Pointers only (`url` + ≤280 quote) if a lead is in play.
+
+11c. **Condense before append.** New ledger evidence ≤140 chars. Tree lines are `name:state` only. If the working set would exceed a small cap (aim: under ~1k tokens), cut oldest log rows first, never the `dead` list or `err`.
+
 ## Springs (drop the sentence before it lands)
 
 11. **Praise is not a row.** If it flatters, discard the sentence; keep only a testable claim. Applause does not choose a branch.
