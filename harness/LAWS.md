@@ -23,7 +23,7 @@ Harness = laws. Skill = map for this job. When they clash, harness wins.
 
 The chat is not the memory. When the window fills, the model restarts and walks a buried lane. Only a condensed working set is injected each turn.
 
-11a. **Inject only this, in this shape:**
+- Inject only:
 
 ```
 err: <exact error ≤160>
@@ -33,9 +33,8 @@ log: <last 5 ledger rows>
 next: <one action>
 ```
 
-11b. **Do not inject** the research packet, full command dumps, old essays, or the skill body twice. Packet stays on disk. Pointers only (`url` + ≤280 quote) if a lead is in play.
-
-11c. **Condense before append.** New ledger evidence ≤140 chars. Tree lines are `name:state` only. If the working set would exceed a small cap (aim: under ~1k tokens), cut oldest log rows first, never the `dead` list or `err`.
+- Do not inject the research packet, full dumps, or the skill twice.
+- **Compressor on every append.** Raw talk does not touch the ledger. Run `harness/compress_ledger.py` (see `harness/COMPRESS.md`). Evidence ≤140. If the working set would exceed ~1k tokens, drop oldest log rows first, never `err` or `dead`.
 
 ## Springs (drop the sentence before it lands)
 
